@@ -1,5 +1,6 @@
 const express = require('express')
 const cors = require('cors')
+const { errors } = require('celebrate')
 const routes = require('./routes')
 
 const app = express()
@@ -7,8 +8,9 @@ const app = express()
 app.use(cors())
 app.use(express.json()) //utilizar JSON
 app.use(routes)
+app.use(errors())
 
-app.listen(3333)
+module.exports = app
 
 /**
  * Rota/Recurso
@@ -16,7 +18,7 @@ app.listen(3333)
 
 /**
  * Métodos HTTP:
- * 
+ *
  * GET: Buscar/listar uma informação do back-end
  * POST: Criar uma informação no back-end
  * PUT: Alterar uma inforamção no back-end
@@ -25,7 +27,7 @@ app.listen(3333)
 
 /**
  * Tipos de parâmetros:
- * 
+ *
  * Query Params: Parâmetros nomeados enviados na rota após "?" (Filtros, paginação...)
  * Route Params: Parâmetros utilizados para identificar recursos
  * Request Body: Corpo da requisição, utilizado para criar ou alterar recursos
@@ -34,7 +36,7 @@ app.listen(3333)
 /**
  * SQL: Mysql, Sqlite, Postgresql, Oracle, Microsoft Sql Server
  * NoSql: MongoDb, CouchDB, etc
- * 
+ *
  * Driver: SELECT * FROM users
  * Query Builder: table('users).select('*').where()
  */
